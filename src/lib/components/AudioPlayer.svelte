@@ -80,7 +80,7 @@
         </div>
       </div>
 
-      <span style="font-size:9px; color:var(--text-ui-dim); flex-shrink:0;">Speech API</span>
+      <span aria-hidden="true" style="font-size:9px; color:var(--text-ui-dim); flex-shrink:0;">Speech API</span>
     </div>
   {/if}
 </div>

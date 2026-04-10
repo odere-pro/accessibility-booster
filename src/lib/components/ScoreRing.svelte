@@ -35,7 +35,7 @@
     />
     <text x="21" y="25" text-anchor="middle" font-size="10" font-weight="700" fill={color}>{pct}%</text>
   </svg>
-  <div style="line-height:1.1;">
+  <div aria-hidden="true" style="line-height:1.1;">
     <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:{color}; transition: color 0.4s ease;">{grade}</div>
     <div style="font-size:10px; color:var(--text-ui-dim);">{score}/{maxScore} pts</div>
   </div>

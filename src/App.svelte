@@ -5,7 +5,7 @@
   import ExplainerStrip from './lib/components/ExplainerStrip.svelte'
   import ScreenReaderPanel from './lib/components/ScreenReaderPanel.svelte'
   import { transform } from './api.js'
-  import { IMAGE_CONTEXT, JARGON_TEXT, TOGGLE_META, MAX_SCORE, CAPTIONS } from './lib/data/content.js'
+  import { IMAGE_CONTEXT, JARGON_TEXT, TOGGLE_META, MAX_SCORE, CAPTIONS, AUDIO_SUMMARY } from './lib/data/content.js'
   import pregenerated from './lib/data/pregenerated.json'
 
   let toggles = {
@@ -119,12 +119,16 @@
 {#if showSRPanel}
   <ScreenReaderPanel
     {toggles}
+    {score}
+    {TOGGLE_META}
+    {MAX_SCORE}
     altText={altTextResult?.result ?? pregenerated.alt_text.result}
     plainText={plainResult?.result ?? pregenerated.plain_language.result}
     jargonText={JARGON_TEXT}
     captions={CAPTIONS}
     announcement={srAnnouncement}
     {selectedLang}
+    {activeMeta}
     onClose={() => showSRPanel = false}
   />
 {/if}

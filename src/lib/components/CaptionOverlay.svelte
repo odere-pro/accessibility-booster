@@ -41,7 +41,7 @@
         <path d="M4 2l10 6-10 6V2z"/>
       </svg>
     </div>
-    <span style="color:rgba(255,255,255,.35); font-size:10px;">1.3B People & AI</span>
+    <span aria-hidden="true" style="color:rgba(255,255,255,.35); font-size:10px;">1.3B People & AI</span>
   </div>
 
   <!-- Active captions -->
