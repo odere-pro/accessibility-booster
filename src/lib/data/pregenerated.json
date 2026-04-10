@@ -1,0 +1,15 @@
+{
+  "alt_text": {
+    "result": "A volunteer in a bright orange vest distributes food packages to a line of people at a Red Cross aid station in southern Sweden.",
+    "latency_ms": 412
+  },
+  "plain_language": {
+    "result": "Cities must make public spaces accessible to everyone. This includes people with disabilities. New rules say cities need to fix sidewalks, ramps, and public buildings. Cities must also add audio signals at crosswalks. These changes should be done by next year. Local groups can apply for grants to help pay for the work. The goal is simple: everyone should be able to move around their city safely and easily.",
+    "latency_ms": 680
+  },
+  "translation": {
+    "nl": "Steden moeten openbare ruimtes toegankelijk maken voor iedereen. Dit geldt ook voor mensen met een beperking. Nieuwe regels schrijven voor dat steden stoepen, hellingbanen en openbare gebouwen moeten aanpassen. Steden moeten ook geluidssignalen toevoegen bij voetgangersoversteekplaatsen. Deze wijzigingen moeten volgend jaar klaar zijn. Lokale organisaties kunnen subsidies aanvragen om de kosten te dekken. Het doel is eenvoudig: iedereen moet veilig en gemakkelijk door zijn stad kunnen bewegen.",
+    "es": "Las ciudades deben hacer que los espacios públicos sean accesibles para todos. Esto incluye a las personas con discapacidad. Las nuevas normas indican que las ciudades deben reparar aceras, rampas y edificios públicos. Las ciudades también deben añadir señales de audio en los cruces peatonales. Estos cambios deben completarse el próximo año. Los grupos locales pueden solicitar subvenciones para ayudar a financiar el trabajo. El objetivo es sencillo: todos deben poder moverse por su ciudad de forma segura y fácil.",
+    "fr": "Les villes doivent rendre les espaces publics accessibles à tous. Cela inclut les personnes handicapées. De nouvelles règles imposent aux villes de réparer les trottoirs, les rampes et les bâtiments publics. Les villes doivent également ajouter des signaux sonores aux passages piétons. Ces changements doivent être réalisés d'ici l'année prochaine. Les groupes locaux peuvent demander des subventions pour financer ces travaux. L'objectif est simple : tout le monde doit pouvoir se déplacer en ville en toute sécurité et facilité."
+  }
+}
