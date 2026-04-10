@@ -11,14 +11,14 @@ This project demonstrates how multimodal AI changes that equation: not by retrof
 
 An interactive before/after demo built in Svelte. Six accessibility features can be toggled on and off in real time, each powered by AI or the browser's native APIs:
 
-| Toggle | What it fixes | WCAG criterion |
-| --- | --- | --- |
-| **Alt text** | Images with `alt=""` get AI-generated contextual descriptions via Claude Vision | 1.1.1 Non-text Content (A) |
-| **Plain language** | Grade 16 jargon is rewritten to Grade 6 reading level by Claude | 3.1.5 Reading Level (AAA) |
-| **Audio** | A spoken article summary is generated via the Web Speech API | 1.1.1 Non-text Content (A) |
-| **Captions** | Flat transcript becomes expressive captions with tone and emotion markers | 1.2.2 Captions (A) |
-| **Translation** | Content is translated to Dutch, Spanish, or French on demand | 3.1.1 Language of Page (A) |
-| **Contrast** | Text contrast ratio raised from 2.8:1 (failing) to 12.6:1 (WCAG AAA) | 1.4.6 Contrast Enhanced (AAA) |
+| Toggle             | What it fixes                                                                   | WCAG criterion                |
+| ------------------ | ------------------------------------------------------------------------------- | ----------------------------- |
+| **Alt text**       | Images with `alt=""` get AI-generated contextual descriptions via Claude Vision | 1.1.1 Non-text Content (A)    |
+| **Plain language** | Grade 16 jargon is rewritten to Grade 6 reading level by Claude                 | 3.1.5 Reading Level (AAA)     |
+| **Audio**          | A spoken article summary is generated via the Web Speech API                    | 1.1.1 Non-text Content (A)    |
+| **Captions**       | Flat transcript becomes expressive captions with tone and emotion markers       | 1.2.2 Captions (A)            |
+| **Translation**    | Content is translated to Dutch, Spanish, or French on demand                    | 3.1.1 Language of Page (A)    |
+| **Contrast**       | Text contrast ratio raised from 2.8:1 (failing) to 12.6:1 (WCAG AAA)            | 1.4.6 Contrast Enhanced (AAA) |
 
 Each toggle updates a live accessibility score and explains the before/after impact.
 
@@ -61,14 +61,6 @@ The 94.8% failure rate is a failure of intent, not technology. The tools already
 npm install
 npm run dev
 ```
-
-Set your Claude API key:
-
-```bash
-VITE_ANTHROPIC_API_KEY=your_key_here
-```
-
-Without a key the demo falls back to pre-generated responses so all six features remain demonstrable.
 
 ---
 

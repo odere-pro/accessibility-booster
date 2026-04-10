@@ -51,5 +51,6 @@ function apiMiddlewarePlugin() {
 }
 
 export default defineConfig({
+  base: '/accessibility-booster/',
   plugins: [tailwindcss(), svelte(), apiMiddlewarePlugin()]
 })
