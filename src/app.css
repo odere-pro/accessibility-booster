@@ -1,17 +1,199 @@
 @import "tailwindcss";
 
+/* ─── Design tokens ─────────────────────────────────────────── */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
+
+  --bg:          #080d18;
+  --surface:     #0f1623;
+  --surface-2:   #16202f;
+  --surface-3:   #1d2a3e;
+  --border:      #1e2d42;
+  --border-2:    #253650;
+
+  /* UI chrome — always legible */
+  --text-ui:     #94a3b8;
+  --text-ui-dim: #4a5a6e;
+  --text-bright: #e2e8f0;
+
+  /* ── Content text — toggled by contrast fix ─────────────── */
+  --text-content:  #1e2d42;   /* failing: nearly invisible on --surface */
+  --text-heading:  #243347;
+
+  /* status */
+  --red-text:    #f87171;
+  --red-bg:      #1a0a0a;
+  --red-border:  #3b1515;
+  --green-text:  #4ade80;
+  --green-bg:    #071810;
+  --green-border:#133d22;
+  --blue-text:   #60a5fa;
+  --blue-bg:     #060f22;
+  --blue-border: #102850;
+  --purple-text: #c084fc;
+  --purple-bg:   #100820;
+  --purple-border:#2a1645;
 }
 
-body {
-  margin: 0;
+/* Contrast toggle ON — whole-page fix ───────────────────────── */
+.contrast-on {
+  --text-content: #e2e8f0;
+  --text-heading: #ffffff;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  height: 100%; height: 100dvh;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-  background: #f9fafb;
-  color: #111827;
+  background: var(--bg);
+  color: var(--text-ui);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Respect reduced motion preference */
+/* ─── Layout shell ───────────────────────────────────────────── */
+.app-shell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100dvh;
+  max-width: 1280px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.app-body {
+  display: grid;
+  grid-template-columns: 1fr 252px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ─── Content column ─────────────────────────────────────────── */
+.content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 14px 14px 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ─── Content 2×2 grid ───────────────────────────────────────── */
+.demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ─── Sidebar ────────────────────────────────────────────────── */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* ─── Toggle nav: default vertical layout ───────────────────── */
+.toggle-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* ─── Responsive: tablet (600–900px) ────────────────────────── */
+@media (max-width: 900px) {
+  .app-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+  .content-col {
+    order: 1;
+    padding: 10px 10px 6px;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    order: 2;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding: 10px;
+    flex-shrink: 0;
+    overflow: visible;
+    animation: slideUp 0.3s ease-out both;
+  }
+
+  /* 3-column grid of toggles on tablet */
+  .sidebar .toggle-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+}
+
+/* ─── Responsive: mobile portrait (≤600px) ──────────────────── */
+@media (max-width: 600px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+  }
+
+  .content-col {
+    overflow-y: auto;
+  }
+
+  /* 2-column grid of toggles on mobile */
+  .sidebar .toggle-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ─── Animations ─────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggered entrance for demo grid cells */
+.demo-grid > *:nth-child(1) { animation: fadeInUp 0.35s ease-out 0.05s both; }
+.demo-grid > *:nth-child(2) { animation: fadeInUp 0.35s ease-out 0.12s both; }
+.demo-grid > *:nth-child(3) { animation: fadeInUp 0.35s ease-out 0.19s both; }
+.demo-grid > *:nth-child(4) { animation: fadeInUp 0.35s ease-out 0.26s both; }
+
+/* Header fade in */
+header { animation: fadeInUp 0.3s ease-out both; }
+
+/* ExplainerStrip fade in */
+.app-body > .content-col > *:last-child { animation: fadeInUp 0.35s ease-out 0.3s both; }
+
+/* ─── Focus ring ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Scrollbar styling ──────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-2) transparent;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
