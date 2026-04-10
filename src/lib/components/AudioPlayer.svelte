@@ -18,46 +18,76 @@
   }
 </script>
 
-{#if active}
-  <div class="flex items-center gap-3 p-3 bg-blue-50 border border-blue-200 rounded-lg transition-all duration-300">
-    <button
-      class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
-      aria-label={speaking ? 'Stop audio summary' : 'Play audio summary'}
-      on:click={speak}
-    >
-      {#if speaking}
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <rect x="3" y="2" width="4" height="12" rx="1"/>
-          <rect x="9" y="2" width="4" height="12" rx="1"/>
-        </svg>
-      {:else}
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <path d="M4 2l10 6-10 6V2z"/>
-        </svg>
-      {/if}
-    </button>
-
-    <div class="flex-1">
-      <div class="text-sm font-medium text-blue-900">Audio summary</div>
-      <div class="flex items-end gap-0.5 mt-1" aria-hidden="true">
-        {#each Array(12) as _, i}
-          <div
-            class="w-1 rounded-full transition-all"
-            class:bg-blue-500={speaking}
-            class:bg-blue-200={!speaking}
-            style="height: {speaking ? Math.random() * 16 + 4 : 4}px; animation: {speaking ? `wave ${0.5 + i * 0.07}s ease-in-out infinite alternate` : 'none'}"
-          ></div>
-        {/each}
-      </div>
+<div aria-live="polite">
+  {#if !active}
+    <div style="
+      display:flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:8px;
+      background:var(--red-bg);
+      border:1px solid var(--red-border);
+    ">
+      <span style="color:var(--red-text); font-size:10px; font-weight:700;" aria-hidden="true">✕</span>
+      <span style="color:var(--red-text); font-size:11px;">No audio alternative</span>
     </div>
+  {:else}
+    <div style="
+      display:flex; align-items:center; gap:10px;
+      padding:8px 10px;
+      border-radius:8px;
+      background:var(--blue-bg);
+      border:1px solid var(--blue-border);
+      transition: background 0.3s;
+    ">
+      <button
+        style="
+          display:flex; align-items:center; justify-content:center;
+          width:30px; height:30px; border-radius:50%;
+          background: #2563eb;
+          border:none; cursor:pointer; color:white;
+          flex-shrink:0;
+          transition: background 0.15s;
+        "
+        aria-label={speaking ? 'Stop audio summary' : 'Play audio summary'}
+        on:click={speak}
+        on:mouseenter={e => e.currentTarget.style.background='#1d4ed8'}
+        on:mouseleave={e => e.currentTarget.style.background='#2563eb'}
+      >
+        {#if speaking}
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="white" aria-hidden="true">
+            <rect x="3" y="2" width="4" height="12" rx="1"/>
+            <rect x="9" y="2" width="4" height="12" rx="1"/>
+          </svg>
+        {:else}
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="white" aria-hidden="true">
+            <path d="M4 2l10 6-10 6V2z"/>
+          </svg>
+        {/if}
+      </button>
 
-    <span class="text-xs text-blue-600">Web Speech API</span>
-  </div>
-{/if}
+      <div style="flex:1; min-width:0;">
+        <div style="font-size:11px; font-weight:500; color:var(--blue-text);">Audio summary</div>
+        <!-- Waveform -->
+        <div style="display:flex; align-items:flex-end; gap:2px; margin-top:3px; height:14px;" aria-hidden="true">
+          {#each Array(12) as _, i}
+            <div style="
+              width:2px; border-radius:1px;
+              background:{speaking ? 'var(--blue-text)' : 'var(--border-2)'};
+              height:{speaking ? Math.random() * 10 + 3 : 3}px;
+              animation:{speaking ? `wave ${0.4 + i * 0.06}s ease-in-out infinite alternate` : 'none'};
+            "></div>
+          {/each}
+        </div>
+      </div>
+
+      <span style="font-size:9px; color:var(--text-ui-dim); flex-shrink:0;">Speech API</span>
+    </div>
+  {/if}
+</div>
 
 <style>
   @keyframes wave {
-    from { height: 4px; }
-    to { height: 20px; }
+    from { height: 2px; }
+    to   { height: 13px; }
   }
 </style>
