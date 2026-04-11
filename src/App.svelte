@@ -10,11 +10,11 @@
 
   let toggles = {
     altText: false,
-    plainLanguage: false,
+    plainLanguage: true,
     audio: false,
     captions: false,
     translation: false,
-    contrast: false
+    contrast: true
   }
 
   let altTextResult = null
