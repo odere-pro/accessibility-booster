@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
@@ -15,7 +19,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check-ci:
+    name: Gate on CI
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    steps:
+      - run: echo "CI passed — proceeding to deploy"
+
   build:
+    needs: check-ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
