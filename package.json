@@ -12,7 +12,7 @@
     "@anthropic-ai/sdk": "^0.91.1",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
     "@tailwindcss/vite": "^4.2.4",
-    "svelte": "^5.55.4",
+    "svelte": "^5.55.5",
     "tailwindcss": "^4.2.2",
     "vite": "^8.0.9"
   }
